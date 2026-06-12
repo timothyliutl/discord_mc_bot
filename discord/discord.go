@@ -5,12 +5,14 @@ import(
 	"fmt"
 )
 
-func server() (*discordgo.Session, error){
-	dg, err := discordgo.New("Bot " + Token)
+func Server(token string) (*discordgo.Session, error){
+	dg, err := discordgo.New("Bot " + token)
+	dg.AddHandler(messageListener)
     if err != nil {
         fmt.Println("error creating Discord session,", err)
-        return
+        return nil, err
     }
+	return dg, err
 
 }
 
