@@ -7,11 +7,21 @@ import(
 	"syscall"
 	"mc_bot/discord"
 	"github.com/joho/godotenv"
+	"mc_bot/aws"
 )
 
 func main(){
+
 	err := godotenv.Load()
+
+	if err != nil{
+		fmt.Println("Error has occured")
+		return
+	}
+
 	token := os.Getenv("token")
+	aws.InitAWS()
+
 
 	goSession, err := discord.Server(token)
 
